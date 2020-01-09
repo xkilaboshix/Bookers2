@@ -1,0 +1,26 @@
+<div class = "container">
+  <div class = "row">
+  <% if flash[:success] %>
+  <%= render 'layouts/flash_message' %>
+  <% end %>
+  <%= render 'users/list', user: @book.user, book: Book.new %>
+
+<div class = col-xs-9>
+  <table class = "table">
+    <h2>Book detail</h2>
+    <tr>
+    <td>
+      <%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60,fallback: "no_image.jpg", size:'60x60' %><br>
+      <%= link_to @book.user.name, user_path(@book.user) %>
+    </td>
+    <td><%= @book.title %></td>
+    <td><%= @book.body %></td>
+    <% if current_user.id == @book.user.id %>
+      <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-default" %></td>
+      <td><%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-default" %></td>
+    <% end %>
+    </tr>
+  </table>
+</div>
+</div>
+</div>

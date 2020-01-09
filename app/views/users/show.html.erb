@@ -1,0 +1,31 @@
+<div class = "container">
+  <div class = "row">
+    <% if flash[:success] %>
+    <%= render 'layouts/flash_message' %>
+    <% end %>
+    <%= render 'list', user: @user, book: @book %>
+
+
+    <div class = "col-xs-9">
+      <table class = "table">
+        <h2>Books</h2>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+        <% @books.each do |book| %>
+        <tbody>
+          <tr>
+            <td><%= attachment_image_tag book.user, :profile_image, :fill, 60, 60,fallback: "no_image.jpg", size:'60x60' %></td>
+    <td><%=link_to book.title, book_path(book) %></td>
+            <td><%= book.body %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample7">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<nav class="navbar-brand navbar-left">
+			<span>Bookers</span>
+			</nav>
+		</div>
+
+		<div class="collapse navbar-collapse" id="navbarEexample7">
+			<ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li class = "">
+            <%= link_to 'Home', user_path(current_user.id), class: "glyphicon glyphicon-home", 'aria-hidden' => true %>
+          </li>
+          <li class = "">
+            <%= link_to 'Users', users_path, class: "glyphicon glyphicon-user", 'aria-hidden' => true %>
+          </li>
+          <li class = "">
+            <%= link_to 'Books',books_path, class: "glyphicon glyphicon-book", 'aria-hidden' => true %>
+          </li>
+          <li class = "">
+            <%= link_to "logout", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out", 'aria-hidden' => true %>
+          </li>
+        <% else %>
+          <li class = "">
+            <%= link_to 'Home', root_path, class: "glyphicon glyphicon-home", 'aria-hidden' => true %>
+          </li>
+          <li class = "">
+            <%= link_to 'About', home_about_path, class:"glyphicon glyphicon-link", 'aria-hidden' => true %>
+          </li>
+          <li class = "">
+            <%= link_to 'Sign up', new_user_registration_path, class: "glyphicon glyphicon-edit", 'aria-hidden' => true %>
+          </li>
+          <li class = "">
+            <%= link_to 'login', new_user_session_path, class: "glyphicon glyphicon-log-in", 'aria-hidden' => true %>
+          </li>
+        <% end %>
+			</ul>
+		</div>
+	</div>
+</nav>
+      </header>
+    <%= yield %>
+    <footer>
+      <div class="col-md-4 col-md-offset-9"><p>CopyRight Infratop.inc</p></div>
+    </footer>
+  </body>
+</html>
