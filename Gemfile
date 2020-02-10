@@ -72,3 +72,4 @@ gem 'jquery-rails'
 group :production do
   gem 'mysql2'
 end
+gem 'font-awesome-rails'
