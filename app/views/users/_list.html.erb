@@ -3,13 +3,26 @@
   <%= attachment_image_tag user, :profile_image, :fill, 100, 100,fallback: "no_image.jpg", size:'100x100' %>
   <table class ="table">
     <tr>
-      <th>name</th>
-      <th><%= user.name %></th>
+      <td>name</td>
+      <td><%= user.name %></td>
     </tr>
 
     <tr>
-      <th>introduction</th>
-      <th><%= user.introduction %></th>
+      <td>introduction</td>
+      <td><%= user.introduction %></td>
+    </tr>
+    <tr>
+      <td>follows</td>
+      <td><%=link_to user.followings.count, followings_path %></td>
+    </tr>
+    <tr>
+      <td>followers</td>
+      <td><%=link_to user.followers.count, followers_path %></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <%= render partial: "follow_button", locals: { user: user } %>
+      </td>
     </tr>
    </table>
    <% if user.id == current_user.id %>
