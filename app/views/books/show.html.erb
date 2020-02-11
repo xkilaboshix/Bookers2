@@ -10,7 +10,7 @@
         <h2>Book detail</h2>
         <tr>
         <td>
-          <%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60,fallback: "no_image.jpg", size:'60x60' %><br>
+          <%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100,fallback: "no_image.jpg", size:'100x100' %><br>
           <%= link_to @book.user.name, user_path(@book.user) %>
         </td>
         <td><%= @book.title %></td>
@@ -38,7 +38,7 @@
         </tr>
       </table>
       <table class = "table">
-        <h2>Book comments</h2>
+        <h4>Book comments</h4>
         <% @book.book_comments.each do |book_comment| %>
           <tr>
             <td>

@@ -15,6 +15,9 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverse_of_relationships, source: :user
 
+  # 名前検索機能
+  has_one :search, inverse_of: :user
+
   # バリデート
   validates :name, presence: true, uniqueness: true, length: {in:2..20}
   validates :introduction,length: { maximum: 50}
@@ -34,4 +37,15 @@ class User < ApplicationRecord
   def following?(other_user)
     self.followings.include?(other_user)
   end
+    # ユーザー検索機能メソッド
+  # def self.search(search)
+  #   if search
+  #      if params[:select_a] == "User" && params[:select_b] == "部分一致"
+  #       User.where(['name LIKE ?', "%#{search}%"])
+  #      end
+  #
+  #   else
+  #     User.all
+  #   end
+  # end
 end
