@@ -15,9 +15,6 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverse_of_relationships, source: :user
 
-  # 名前検索機能
-  has_one :search, inverse_of: :user
-
   # バリデート
   validates :name, presence: true, uniqueness: true, length: {in:2..20}
   validates :introduction,length: { maximum: 50}
